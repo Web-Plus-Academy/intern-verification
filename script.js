@@ -10,8 +10,8 @@ const internsData = [
         phone: "+91 9392763609",
         duration: "4 Months",
         domain: "Ai / Machine Learning",
-        fromDate: "2025-12-08", // fixed 2015 typo to 2025 based on toDate
-        toDate: "2026-04-08",
+        fromDate: "2025-12-05", // fixed 2015 typo to 2025 based on toDate
+        toDate: "2026-04-05",
         mode: "Online",
         status: "Verified",
 
@@ -26,8 +26,8 @@ const internsData = [
         phone: "+91 7981992064",
         duration: "4 Months",
         domain: "Ai / Machine Learning",
-        fromDate: "2025-12-09",
-        toDate: "2026-04-09",
+        fromDate: "2025-12-06",
+        toDate: "2026-04-06",
         mode: "Online",
         status: "Verified"
     },
