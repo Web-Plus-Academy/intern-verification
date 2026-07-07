@@ -31,6 +31,66 @@ const internsData = [
         mode: "Online",
         status: "Verified"
     },
+    {
+        internId: "SWPAFE2001",
+        name: "VANKIREDDI VASUNDHARA",
+        email: "vasuvankireedy@gmail.com",
+        year: "N/A",
+        department: "N/A",
+        college: "N/A",
+        phone: "+91 9182284843",
+        duration: "2 Months",
+        domain: "Frontend Development",
+        fromDate: "2026-05-06",
+        toDate: "2026-07-06",
+        mode: "Offline",
+        status: "Verified"
+    },
+    {
+        internId: "SWPAFE2002",
+        name: "Bucchakkagari Chandana",
+        email: "bucchakkagaric@gmail.com",
+        year: "N/A",
+        department: "N/A",
+        college: "N/A",
+        phone: "+91 7013585282",
+        duration: "2 Months",
+        domain: "Frontend Development",
+        fromDate: "2026-05-06",
+        toDate: "2026-07-06",
+        mode: "Offline",
+        status: "Verified"
+    },
+    {
+        internId: "SWPAFE2003",
+        name: "KAMBHAM SATWIKA",
+        email: "satwikareddy359@gmail.com",
+        year: "N/A",
+        department: "N/A",
+        college: "N/A",
+        phone: "+91 6303486020",
+        duration: "2 Months",
+        domain: "Frontend Development",
+        fromDate: "2026-05-06",
+        toDate: "2026-07-06",
+        mode: "Offline",
+        status: "Verified"
+    },
+    {
+        internId: "SWPAFE2004",
+        name: "MOSALI BABU REDDY",
+        email: "babureddymosali@gmail.com",
+        year: "N/A",
+        department: "N/A",
+        college: "N/A",
+        phone: "+91 9701507603",
+        duration: "2 Months",
+        domain: "Frontend Development",
+        fromDate: "2026-05-06",
+        toDate: "2026-07-06",
+        mode: "Offline",
+        status: "Verified"
+    }
 ];
 
 const grid = document.getElementById('internsGrid');
@@ -51,6 +111,21 @@ function formatDate(dateStr) {
     return new Date(dateStr).toLocaleDateString(undefined, options);
 }
 
+function maskPhone(phone) {
+    if (!phone) return 'N/A';
+    const cleanPhone = phone.trim();
+    if (cleanPhone.startsWith('+')) {
+        const parts = cleanPhone.split(' ');
+        if (parts.length > 1) {
+            const countryCode = parts[0];
+            const actualNum = parts.slice(1).join('').replace(/\D/g, '');
+            return `${countryCode} ******${actualNum.slice(-4)}`;
+        }
+    }
+    const actualNum = cleanPhone.replace(/\D/g, '');
+    return `******${actualNum.slice(-4)}`;
+}
+
 function renderInterns(data) {
     grid.innerHTML = '';
     
@@ -69,7 +144,10 @@ function renderInterns(data) {
                     <span class="intern-id">#${intern.internId}</span>
                     <span class="intern-name">${intern.name}</span>
                 </div>
-                <span class="intern-status ${getStatusClass(intern.status)}">${getStatusIcon(intern.status)} ${intern.status}</span>
+                ${intern.status.toLowerCase() === 'verified' ? 
+                    `<img src="verified.png" alt="Verified" class="verified-badge-img">` : 
+                    `<span class="intern-status ${getStatusClass(intern.status)}">${getStatusIcon(intern.status)} ${intern.status}</span>`
+                }
             </div>
             
             <div class="card-body">
@@ -80,12 +158,12 @@ function renderInterns(data) {
                 
                 <div class="info-group">
                     <span class="info-label">College / University</span>
-                    <span class="info-value"><i class="fa-solid fa-building-columns"></i> <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;" title="${intern.college}">${intern.college}</span></span>
+                    <span class="info-value"><i class="fa-solid fa-building-columns"></i> <span title="${intern.college}">${intern.college}</span></span>
                 </div>
                 
                 <div class="info-group">
                     <span class="info-label">Department & Year</span>
-                    <span class="info-value"><i class="fa-solid fa-graduation-cap"></i> <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px;" title="${intern.department}, ${intern.year}">${intern.department}, ${intern.year}</span></span>
+                    <span class="info-value"><i class="fa-solid fa-graduation-cap"></i> <span title="${intern.department}, ${intern.year}">${intern.department}, ${intern.year}</span></span>
                 </div>
                 
                 <div class="info-group">
@@ -95,7 +173,7 @@ function renderInterns(data) {
                 
                 <div class="info-group">
                     <span class="info-label">Phone Number</span>
-                    <span class="info-value"><i class="fa-solid fa-phone"></i> ${intern.phone}</span>
+                    <span class="info-value"><i class="fa-solid fa-phone"></i> ${maskPhone(intern.phone)}</span>
                 </div>
                 
                 <div class="info-group">
